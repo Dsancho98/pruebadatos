@@ -249,7 +249,6 @@
     <Component class="javax.swing.JButton" name="primero">
       <Properties>
         <Property name="text" type="java.lang.String" value="Primero"/>
-        <Property name="actionCommand" type="java.lang.String" value="Primero"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="primeroActionPerformed"/>
