@@ -26,6 +26,7 @@ public class Pedidos extends javax.swing.JFrame {
         initComponents();
         aceptar.setVisible(false);
         cancelar.setVisible(false);
+        code.setVisible(false);
         String url ="jdbc:mysql://localhost:3306/base_datos_1";
         String user = "root";
         String pass = "";
@@ -38,6 +39,8 @@ public class Pedidos extends javax.swing.JFrame {
         numpedido.setText(r.getString("NUM_PEDIDO"));
         fecha.setText(r.getString("FECHA"));
         cliente.setText(r.getString("C.NOMBRE"));
+        code.setText(r.getString("CLIENTE"));
+        
     }
 
     /**
@@ -66,6 +69,7 @@ public class Pedidos extends javax.swing.JFrame {
         volver = new javax.swing.JToggleButton();
         aceptar = new javax.swing.JToggleButton();
         cancelar = new javax.swing.JToggleButton();
+        code = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -156,6 +160,8 @@ public class Pedidos extends javax.swing.JFrame {
             }
         });
 
+        code.setEnabled(false);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -163,88 +169,92 @@ public class Pedidos extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(135, 135, 135)
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(aceptar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 80, Short.MAX_VALUE)
-                        .addComponent(cancelar)
-                        .addGap(31, 31, 31))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel2)
-                                .addGap(18, 18, 18)
-                                .addComponent(numpedido))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel3)
-                                .addGap(94, 94, 94)
-                                .addComponent(fecha))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel4)
-                        .addGap(86, 86, 86)
-                        .addComponent(cliente))
-                    .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(anterior)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(borrar, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(82, 82, 82)
-                                .addComponent(volver, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addGroup(layout.createSequentialGroup()
                                 .addComponent(siguiente, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(nuevo, javax.swing.GroupLayout.DEFAULT_SIZE, 93, Short.MAX_VALUE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(nuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(31, 31, 31)
                                 .addComponent(modificar, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(primero)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(ultimo)))))
-                .addContainerGap())
+                                .addGap(32, 32, 32))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(borrar, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(volver, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(54, 54, 54)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(ultimo)
+                            .addComponent(primero))
+                        .addGap(301, 301, 301))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(135, 135, 135)
+                                .addComponent(jLabel1))
+                            .addGroup(layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel2)
+                                    .addComponent(jLabel3)
+                                    .addComponent(jLabel4))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(code, javax.swing.GroupLayout.PREFERRED_SIZE, 326, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(cliente, javax.swing.GroupLayout.PREFERRED_SIZE, 326, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(numpedido, javax.swing.GroupLayout.DEFAULT_SIZE, 323, Short.MAX_VALUE)
+                                            .addComponent(fecha))
+                                        .addGap(18, 18, 18)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(aceptar)
+                                            .addComponent(cancelar))))))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap(10, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(11, 11, 11)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(aceptar)
-                            .addComponent(cancelar)))
-                    .addComponent(jLabel1))
+                .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(numpedido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(30, 30, 30)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(numpedido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(aceptar))
+                .addGap(27, 27, 27)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel3)
-                    .addComponent(fecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(30, 30, 30)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(fecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cancelar)))
+                .addGap(32, 32, 32)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel4)
-                    .addComponent(cliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(cliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(code, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(anterior)
                     .addComponent(siguiente)
                     .addComponent(nuevo)
                     .addComponent(modificar)
-                    .addComponent(primero)
-                    .addComponent(ultimo))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
+                    .addComponent(primero))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(borrar)
-                    .addComponent(volver))
-                .addContainerGap())
+                    .addComponent(volver)
+                    .addComponent(ultimo))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+
+        code.getAccessibleContext().setAccessibleName("");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -256,6 +266,7 @@ public class Pedidos extends javax.swing.JFrame {
                 numpedido.setText(r.getString("NUM_PEDIDO"));
                 fecha.setText(r.getString("FECHA"));
                 cliente.setText(r.getString("C.NOMBRE"));
+                code.setText(r.getString("CLIENTE"));
             } } catch (SQLException ex) {
             Logger.getLogger(Pedidos.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -268,6 +279,7 @@ public class Pedidos extends javax.swing.JFrame {
                numpedido.setText(r.getString("NUM_PEDIDO"));
                 fecha.setText(r.getString("FECHA"));
                 cliente.setText(r.getString("C.NOMBRE"));
+                code.setText(r.getString("CLIENTE"));
                } } catch (SQLException ex) {
                Logger.getLogger(Articulos.class.getName()).log(Level.SEVERE, null, ex);
            }       
@@ -279,6 +291,7 @@ public class Pedidos extends javax.swing.JFrame {
             numpedido.setText(r.getString("NUM_PEDIDO"));
             fecha.setText(r.getString("FECHA"));
             cliente.setText(r.getString("C.NOMBRE"));
+            code.setText(r.getString("CLIENTE"));
         } catch (SQLException ex) {
             Logger.getLogger(Pedidos.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -290,12 +303,17 @@ public class Pedidos extends javax.swing.JFrame {
             numpedido.setText(r.getString("NUM_PEDIDO"));
             fecha.setText(r.getString("FECHA"));
             cliente.setText(r.getString("C.NOMBRE"));
+            code.setText(r.getString("CLIENTE"));
         } catch (SQLException ex) {
             Logger.getLogger(Pedidos.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_ultimoActionPerformed
 
     private void nuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nuevoActionPerformed
+        code.setVisible(true);
+        cliente.setVisible(false);
+        cliente.setEnabled(false);
+        code.setEnabled(true);
         numpedido.setEditable(true);
         borrar.setEnabled(false);
         nuevo.setEnabled(false);
@@ -311,6 +329,7 @@ public class Pedidos extends javax.swing.JFrame {
         numpedido.setText(null);
         fecha.setText(null);
         cliente.setText(null);
+        code.setText(null);
     }//GEN-LAST:event_nuevoActionPerformed
 
     private void aceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aceptarActionPerformed
@@ -334,7 +353,11 @@ public class Pedidos extends javax.swing.JFrame {
                       }
            } catch (SQLException ex) {
                Logger.getLogger(Articulos.class.getName()).log(Level.SEVERE, null, ex);
-           }
+           }       
+               code.setVisible(false);
+               cliente.setVisible(true);
+               cliente.setEnabled(true);
+               code.setEnabled(false);
                numpedido.setEditable(false);
                borrar.setEnabled(true);
                anterior.setEnabled(true);
@@ -361,7 +384,7 @@ public class Pedidos extends javax.swing.JFrame {
                String vnum, vfecha, vcliente;
                vnum = numpedido.getText();
                vfecha = fecha.getText();
-               vcliente = cliente.getText();
+               vcliente = code.getText();
                String url = "jdbc:mysql://localhost:3306/base_datos_1";
                String user = "root";
                String pass = "";
@@ -371,7 +394,7 @@ public class Pedidos extends javax.swing.JFrame {
                int resultado = s.executeUpdate(query);
                r.refreshRow();
            } catch (SQLException ex) {
-               Logger.getLogger(Articulos.class.getName()).log(Level.SEVERE, null, ex);
+               Logger.getLogger(Articulos.class.getName()).log(Level.SEVERE, null, ex);              
            }
     }//GEN-LAST:event_modificarActionPerformed
 
@@ -395,6 +418,7 @@ public class Pedidos extends javax.swing.JFrame {
                numpedido.setText(r.getString("NUM_PEDIDO"));
                 fecha.setText(r.getString("FECHA"));
                 cliente.setText(r.getString("C.NOMBRE"));
+                code.setText("CLIENTE");
             }
            } catch (SQLException ex) {
                Logger.getLogger(Articulos.class.getName()).log(Level.SEVERE, null, ex);
@@ -403,6 +427,11 @@ public class Pedidos extends javax.swing.JFrame {
 
     private void cancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarActionPerformed
           try {
+             
+            cliente.setEnabled(true);
+            code.setEnabled(false);        
+            code.setVisible(false);
+            cliente.setVisible(true);
             numpedido.setEditable(false);
             borrar.setEnabled(true);
             nuevo.setEnabled(true);
@@ -468,6 +497,7 @@ public class Pedidos extends javax.swing.JFrame {
     private javax.swing.JToggleButton borrar;
     private javax.swing.JToggleButton cancelar;
     private javax.swing.JTextField cliente;
+    private javax.swing.JTextField code;
     private javax.swing.JTextField fecha;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
