@@ -25,7 +25,6 @@ public class Fabricantes extends javax.swing.JFrame {
      */
     public Fabricantes() throws SQLException {
         initComponents();
-        //Vamos a hacer una pruebas
         aceptar.setVisible(false);
         cancelar.setVisible(false);
           String url ="jdbc:mysql://localhost:3306/base_datos_1";
